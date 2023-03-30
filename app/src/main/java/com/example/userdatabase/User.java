@@ -2,7 +2,10 @@ package com.example.userdatabase;
 
 import android.widget.RadioGroup;
 
-public class User {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class User implements Serializable {
     private String firstName;
     private String lastName;
     private String email;
@@ -12,14 +15,15 @@ public class User {
 
     public static int userCounter = 0;
 
-    public User(String firstName, String lastName, String email, String degreeProgram, int image) {
+    private ArrayList<String> degrees;
+
+    public User(String firstName, String lastName, String email, String degreeProgram, int image, ArrayList degrees ) {
          this.firstName = firstName;
          this.lastName = lastName;
          this.email = email;
          this.degreeProgram = degreeProgram;
          this.image = image;
-
-         userCounter++;
+         this.degrees = degrees;
     }
 
     public String getFirstName() {
@@ -40,5 +44,9 @@ public class User {
 
     public int getImage() {
         return image;
+    }
+
+    public ArrayList<String> getDegrees() {
+        return degrees;
     }
 }

@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import java.util.ArrayList;
+
 public class listUsers extends AppCompatActivity {
 
     private UserStorage storage;
@@ -17,6 +19,7 @@ public class listUsers extends AppCompatActivity {
         setContentView(R.layout.activity_list_users);
 
         storage = UserStorage.getInstance();
+        storage.sortUsersAlphabeticallyByLastName();
 
         recyclerView = findViewById(R.id.rvUserList);
 

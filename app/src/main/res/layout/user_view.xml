@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="85dp"
+    android:layout_height="wrap_content"
+    android:paddingVertical="8dp"
     android:layout_marginStart="20dp"
     android:layout_marginTop="20dp"
     android:layout_marginEnd="45dp"
@@ -20,7 +21,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
@@ -46,5 +47,19 @@
             android:layout_height="wrap_content"
             android:text="Sähköposti"
             android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txtDegreesHeading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Suoritetut tutkinnot:"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txtDegrees"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textSize="18sp" />
     </LinearLayout>
-</androidx.appcompat.widget.LinearLayoutCompat>
+</LinearLayout>

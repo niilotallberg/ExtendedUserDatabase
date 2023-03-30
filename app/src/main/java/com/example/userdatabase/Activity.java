@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
+import java.util.ArrayList;
+
 public class Activity extends AppCompatActivity {
     private EditText firstNameInput;
     private EditText lastNameInput;
@@ -31,6 +33,12 @@ public class Activity extends AppCompatActivity {
 
     private int image;
 
+    private Context context;
+
+    private CheckBox checkBoxOne, checkBoxTwo, checkBoxThree, checkBoxFour;
+
+    private ArrayList<String> degrees = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +58,8 @@ public class Activity extends AppCompatActivity {
         firstNameInput = findViewById(R.id.etFirstName);
         lastNameInput = findViewById(R.id.etLastName);
         emailInput = findViewById(R.id.etEmail);
+
+        context = this;
     }
 
     public void addUser(View view) {
@@ -57,6 +67,24 @@ public class Activity extends AppCompatActivity {
         firstName = firstNameInput.getText().toString();
         lastName = lastNameInput.getText().toString();
         email = emailInput.getText().toString();
+
+        checkBoxOne = findViewById(R.id.cbKandiTutkinto);
+        checkBoxTwo = findViewById(R.id.cbDiplomiInsinööri);
+        checkBoxThree = findViewById(R.id.cbTekniikanTohtori);
+        checkBoxFour = findViewById(R.id.cbUimamaisteri);
+
+        if (checkBoxOne.isChecked()) {
+            degrees.add("-Kandidaatin tutkinto");
+        }
+        if (checkBoxTwo.isChecked()) {
+            degrees.add("-Diplomi-insinöörin tutkinto");
+        }
+        if (checkBoxThree.isChecked()) {
+            degrees.add("-Tekniikan tohtorin tutkinto");
+        }
+        if (checkBoxFour.isChecked()) {
+            degrees.add("-Uimamaisteri");
+        }
 
         rgPicture = findViewById(R.id.rgPicture);
 
@@ -85,7 +113,9 @@ public class Activity extends AppCompatActivity {
                 degreeProgram = "Sähkötekniikka";
                 break;
         }
-        UserStorage.getInstance().addUser(new User(firstName, lastName, email, degreeProgram, image));
+
+        UserStorage.getInstance().addUser(new User(firstName, lastName, email, degreeProgram, image, degrees));
+        UserStorage.getInstance().saveUsers(context);
     }
 
 }

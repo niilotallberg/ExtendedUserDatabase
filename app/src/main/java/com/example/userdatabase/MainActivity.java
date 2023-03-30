@@ -2,6 +2,7 @@ package com.example.userdatabase;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,13 +12,20 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView txtUserCounter;
 
+    private Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         txtUserCounter = findViewById(R.id.txtUserCounter);
-        txtUserCounter.setText("Käyttäjiä on: " + User.userCounter);
+        txtUserCounter.setText("Käyttäjiä on: " + UserStorage.getInstance().getUsersCount());
+
+        context = this;
+
+        UserStorage.getInstance().loadUsers(context);
+
     }
 
     public void switchToActivity(View view) {
@@ -31,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateUserCounter(View view) {
-        txtUserCounter.setText("Käyttäjiä on: " + User.userCounter);
+        txtUserCounter.setText("Käyttäjiä on: " + UserStorage.getInstance().getUsersCount());
     }
 
 }
